@@ -8,7 +8,12 @@ st.header("MMA Scorecard", divider="blue")
 
 # Google Sheets credentials fra Streamlit Secrets (til brug på Streamlit Cloud)
 creds_dict = json.loads(st.secrets["GOOGLE_SHEETS_CREDENTIALS"])
-creds = Credentials.from_service_account_info(creds_dict)
+
+# Definer scopes for Google Sheets og Google Drive
+scopes = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+
+# Initialiser credentials med de definerede scopes
+creds = Credentials.from_service_account_info(creds_dict, scopes=scopes)
 client = gspread.authorize(creds)
 
 # Åbn Google Sheet (udskift "Your Google Sheet Name" med navnet på dit Google Sheet)
