@@ -93,6 +93,9 @@ if st.session_state.results:
 # Notes field that uses session_state to retain data
 note = st.text_input("Notes", key="name")
 
+# Display the saved note
+st.write("Current note:", st.session_state.name)
+
 # "Save" button to save results to Google Sheets
 if st.button("Save"):
     if st.session_state.results:
@@ -109,5 +112,4 @@ if st.button("Save"):
     else:
         st.warning("No results to save. Please calculate totals first.")
 
-# Display the saved note
-st.write("Current note:", st.session_state.name)
+
